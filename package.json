@@ -1,0 +1,27 @@
+{
+  "name": "medhelp-backend",
+  "version": "1.0.0",
+  "description": "Medhelp's backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanchitttt/medHelp-backend.git"
+  },
+  "author": "Sanchit Tewari",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sanchitttt/medHelp-backend/issues"
+  },
+  "homepage": "https://github.com/sanchitttt/medHelp-backend#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.3.1",
+    "validator": "^13.9.0"
+  }
+}
