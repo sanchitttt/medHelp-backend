@@ -61,6 +61,12 @@ class AuthService {
                             "signupExpiresAt": expiredDate
                         }
                     })
+                    const payload = {
+                        ...data,
+                        signupExpiresAt: expiredDate
+                    }
+                    const token = JWTServiceInstance.encode(payload, process.env.JWT_SECRET);
+                    await sendEmail(email, token, 'VERIFY');
                 }
                 else {
                     const salt = bcrypt.genSaltSync(saltRounds);
