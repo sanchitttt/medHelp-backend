@@ -25,7 +25,7 @@ async function sendEmail(email, link, type = "VERIFY") {
           <h2>Email Verification</h2>
           <p>Hello,</p>
           <p>Thank you for signing up. Please click on the link below to verify your email:</p>
-          <b><a href=${'http://localhost:8082/auth/signupusers/' + link}>Verification link</a></b>
+          <b><a href=${process.env.ENV === 'development' ? 'http://localhost:8082/auth/signupusers/' : 'https://med-help-backend.vercel.app' + link}>Verification link</a></b>
           <p>This OTP is valid for 10 minutes.</p>
           <p>If you did not sign up for an account, you can safely ignore this email.</p>
           <p>Best regards,<br>Your Company</p>

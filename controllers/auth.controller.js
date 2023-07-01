@@ -5,15 +5,12 @@ const AuthServiceInstance = new AuthService();
 
 async function postLogin(req, res) {
     try {
-        console.log('reached1')
         await AuthServiceInstance.login(req.body);
-        console.log('reached end')
         res.end();
     } catch (error) {
         res.status(401).json(error);
     }
 }
-
 
 
 async function postSignup(req, res) {
@@ -31,7 +28,6 @@ async function postSignup(req, res) {
 
 async function getEncodedLinkOfSignupUsers(req, res) {
     try {
-        console.log('request recieved')
         JWTServiceInstance.verify(req.params.encodedLink, process.env.JWT_SECRET);
         const decoded = JWTServiceInstance.decode(req.params.encodedLink)
         const date = new Date();
@@ -59,7 +55,7 @@ async function getEncodedLinkOfSignupUsers(req, res) {
     <div class='container'>
       <h1>Authorization Success</h1>
       <p>Your account is verified now</p>
-      <p> Click <a href='http://localhost:3000/login'>here</a> to login</p>
+      <p> Click <a href=${process.env.ENV==='development'?'http://localhost:3000/login':'https://medicsdemo.vercel.app/login'}>here</a> to login</p>
       </div>
     </body>
     </html>
