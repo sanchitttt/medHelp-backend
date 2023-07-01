@@ -1,7 +1,8 @@
 const router = require('express').Router();
-const { getLogin, postLogin } = require('../controllers/auth.controller');
+const { postLogin, postSignup, getEncodedLinkOfSignupUsers } = require('../controllers/auth.controller');
 
-router.get('/login', getLogin);
+router.get('/signupusers/:encodedLink',getEncodedLinkOfSignupUsers)
+router.post('/login', postLogin);
 router.post('/signup', postSignup);
 
 module.exports = router;

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-var validator = require('validator');
 
 
 const schema = new mongoose.Schema({
@@ -17,18 +16,13 @@ const schema = new mongoose.Schema({
     image: {
         type: String,
         required: false
+    },
+    signupExpiresAt: {
+        type: Date
     }
 })
 
-const User = mongoose.model('users', schema);
+const SignedUpUsers = mongoose.model('signedUpusers', schema);
 
-// schema.pre('save', async function someFunction(next) {
-//     if (validator.isEmail(this.email)) {
-//         next();
-//     }
-//     else {
-//         throw new Error('Invalid email');
-//     }
-// })
 
-module.exports = User;
+module.exports = SignedUpUsers;
