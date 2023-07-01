@@ -19,7 +19,7 @@ class AuthService {
                 else { // Not a google login
                     const passwordMatches = bcrypt.compareSync(password, exists.password);
                     if (passwordMatches) {
-                        return true;
+                        return exists;
                     }
                     else {
                         throw "Invalid credentials"
@@ -33,6 +33,7 @@ class AuthService {
                         ...data,
                         status: 'nonVerified'
                     });
+                    return newUser;
                 }
                 else { // Not a google login
                     throw "Account doesn't exist. Signup instead!"

@@ -5,10 +5,9 @@ const AuthServiceInstance = new AuthService();
 
 async function postLogin(req, res) {
     try {
-        console.log('reached 1')
-        await AuthServiceInstance.login(req.body);
-        console.log('reached 2')
-        res.end();
+        const user = await AuthServiceInstance.login(req.body);
+       // res.redirect(process.env.ENV==='development'?'http://localhost:3000/home':'https://med-help-backend.vercel.app/home')
+        res.json(user);
     } catch (error) {
         res.status(401).json(error);
     }
