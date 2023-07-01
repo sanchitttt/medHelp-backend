@@ -5,7 +5,9 @@ const AuthServiceInstance = new AuthService();
 
 async function postLogin(req, res) {
     try {
+        console.log('reached 1')
         await AuthServiceInstance.login(req.body);
+        console.log('reached 2')
         res.end();
     } catch (error) {
         res.status(401).json(error);
