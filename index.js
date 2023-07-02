@@ -5,6 +5,10 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const app = express();
 const authRoutes = require('./routes/auth.routes');
+const usersRoutes = require('./routes/users.routes');
+const verificationRoutes = require('./routes/verification.routes');
+
+
 const URI = process.env.MONGODB_URI;
 const PORT = process.env.PORT
 
@@ -24,6 +28,8 @@ app.use(express.json());
 
 // ROUTES
 app.use('/auth', authRoutes);
+app.use('/users', usersRoutes);
+app.use('/verification', verificationRoutes)
 
 
 app.listen(PORT, () => {

@@ -1,6 +1,15 @@
 const mongoose = require('mongoose');
 var validator = require('validator');
 
+const verificationSchema = new mongoose.Schema({
+    requested: {
+        type: Boolean,
+        default: false
+    },
+    requestedAt: {
+        type: Date
+    }
+})
 
 const schema = new mongoose.Schema({
     name: {
@@ -17,7 +26,8 @@ const schema = new mongoose.Schema({
     image: {
         type: String,
         required: false
-    }
+    },
+    verification: verificationSchema
 })
 
 const User = mongoose.model('users', schema);
