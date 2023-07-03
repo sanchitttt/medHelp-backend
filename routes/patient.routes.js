@@ -6,8 +6,8 @@ router.post('/new', (req, res, next) => {
     req.body = {
         ...req.body,
         age: parseInt(req.body.age),
-        tags: JSON.parse(req.body.tags),
-        images: JSON.parse(req.body.images)
+        tags: req.body.tags,
+        images: req.body.images
     }
     const errors = isPatientRequestBodyValid(req.body);
     if (!errors) {
@@ -15,6 +15,7 @@ router.post('/new', (req, res, next) => {
     } else {
         res.json(errors.details)
     }
+
 }, postPatient)
 
 module.exports = router;

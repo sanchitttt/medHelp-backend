@@ -13,11 +13,11 @@ class CloudinaryService {
         const finalResult = [];
         for (let i = 0; i < images.length; i++) {
             try {
-                await cloudinary.uploader.upload(images[i].tempFilePath, (err, result) => {
+                await cloudinary.uploader.upload(images[i], (err, result) => {
                     finalResult.push(result.url);
                 })
             } catch (error) {
-                console.log('error uploading', images[i].name);
+                console.log('error uploading', images[i]);
             }
         }
         return finalResult;
