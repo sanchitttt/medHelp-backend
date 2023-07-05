@@ -3,6 +3,10 @@ const CloudinaryService = require('./cloudinary.service');
 const CloudinaryServiceInstance = new CloudinaryService();
 
 class PatientService {
+    async findAll() {
+        const patients = await Patients.find({});
+        return patients;
+    }
     async create(body, images) {
         let cloudinaryImages;
         try {

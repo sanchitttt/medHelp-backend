@@ -44,7 +44,7 @@ cloudinary.config({
 app.use('/auth', authRoutes);
 app.use('/users', usersRoutes);
 app.use('/verification', verificationRoutes)
-app.use('/patients', patientRoutes)
+app.use('/patients', patientRoutes);
 
 app.listen(PORT, () => {
     console.log(`Listening on PORT ${PORT}...`)

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { postPatient } = require('../controllers/patient.controller');
+const { postPatient,getAllPatients } = require('../controllers/patient.controller');
 const isPatientRequestBodyValid = require('../validations/patient.validation');
 
 router.post('/new', (req, res, next) => {
@@ -17,5 +17,7 @@ router.post('/new', (req, res, next) => {
     }
 
 }, postPatient)
+
+router.get('/', getAllPatients)
 
 module.exports = router;

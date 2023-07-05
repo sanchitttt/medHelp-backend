@@ -20,6 +20,14 @@ async function postPatient(req, res) {
     }
 }
 
+async function getAllPatients(req, res) {
+    try {
+        const patients = await PatientServiceInstance.findAll();
+        res.json(patients);
+    } catch (error) {
+        res.status(400).end();
+    }
+}
 
 
-module.exports = { postPatient }
+module.exports = { postPatient, getAllPatients }
