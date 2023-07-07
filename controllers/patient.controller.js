@@ -1,6 +1,7 @@
-const deleteFolderRecursive = require("../helper/recursiveFolderDelete");
 const PatientService = require("../services/patient.service")
 const PatientServiceInstance = new PatientService();
+const CloudinaryService = require("../services/cloudinary.service");
+const CloudinaryServiceInstance = new CloudinaryService();
 const path = require('path');
 
 async function postPatient(req, res) {
@@ -28,6 +29,25 @@ async function getAllPatients(req, res) {
         res.status(400).end();
     }
 }
+async function getPatientById(req, res) {
+    try {
+        const patient = await PatientServiceInstance.findOne(req.params.patientId);
+        res.json(patient);
+    } catch (error) {
+        res.status(400).end();
+    }
+}
+async function postPatientById(req, res) {
+    try {
+        const { imagesToBeDeleted } = req.body;
+        if (imagesToBeDeleted.length) CloudinaryServiceInstance.destroyAll(req.body.imagesToBeDeleted);
+        
+        const patient = await PatientServiceInstance.findOneAndUpdate(req.params.patientId, req.body);
+        res.json(patient);
+    } catch (error) {
+        res.status(400).end();
+    }
+}
 
 
-module.exports = { postPatient, getAllPatients }
+module.exports = { postPatient, getAllPatients, getPatientById, postPatientById }

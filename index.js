@@ -40,6 +40,7 @@ cloudinary.config({
 });
 
 
+
 // ROUTES
 app.use('/auth', authRoutes);
 app.use('/users', usersRoutes);

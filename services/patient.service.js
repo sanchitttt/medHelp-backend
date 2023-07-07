@@ -3,6 +3,36 @@ const CloudinaryService = require('./cloudinary.service');
 const CloudinaryServiceInstance = new CloudinaryService();
 
 class PatientService {
+    async findOneAndUpdate(id, body) {
+        try {
+            const { _id, name, surgery, assignedDoctor, dateOfSurgery, diagnosis, email, tags, newlyAddedImages, images } = body;
+            console.log('reached1', body)
+            let cloudinaryImages = [];
+            if (newlyAddedImages.length)
+                cloudinaryImages = await CloudinaryServiceInstance.uploadMultiple(newlyAddedImages);
+            const patient = await Patients.findOneAndUpdate({ _id: _id }, {
+                $set: {
+                    "name": name,
+                    "email": email,
+                    "surgery": surgery,
+                    "diagnosis": diagnosis,
+                    "tags": tags,
+                    "dateOfSurgery": dateOfSurgery,
+                    "assignedDoctor": assignedDoctor,
+                    "images": images.concat(cloudinaryImages)
+                }
+            });
+            console.log('reached2')
+            return patient;
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+    async findOne(id) {
+        const patient = await Patients.findById(id);
+        return patient;
+    }
     async findAll() {
         const patients = await Patients.find({});
         return patients;
